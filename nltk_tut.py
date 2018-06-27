@@ -154,8 +154,54 @@ sample = gutenberg.raw("bible-kjv.txt")
 tok = sent_tokenize(sample)
 print(tok[5:15])
 
+#Wordnet
+
+from nltk.corpus import wordnet
+
+syns = wordnet.synsets("program")
+print(syns)
+#syns is a list
 
 
 
+#just print the name
+print(syns[0].lemmas()[0].name())
 
+
+#lemmas are like same words with different grammar or meaning and synonyms
+
+
+#definition
+print(syns[0].definition())
+
+#examples
+print(syns[0].examples())
+
+
+
+synonyms = []
+antonyms = []
+
+for syn in wordnet.synsets("good"):
+    for l in syn.lemmas():
+        synonyms.append(l.name())
+        if l.antonyms():
+            antonyms.append(l.antonyms()[0].name())
             
+print(synonyms)
+print(antonyms)
+
+
+
+
+#Similarity semantic
+
+#ship.n.01 means ship i.e noun and the first one of the list
+w1 = wordnet.synset("ship.n.01")
+w2 = wordnet.synset("boat.n.01")
+print(w1.wup_similarity(w2))
+#wup_similarity named after the research paper
+
+
+
+
